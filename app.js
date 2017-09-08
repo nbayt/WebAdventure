@@ -5,6 +5,8 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
+var firebase = require("firebase");
+
 var index = require('./routes/index');
 var users = require('./routes/users');
 
@@ -44,3 +46,12 @@ app.use(function(err, req, res, next) {
 });
 
 module.exports = app;
+
+var config = {
+  apiKey: "AIzaSyApD4FfZNCnk8rJ9DUtyfhGdm-Wj6z7Pq4",
+  authDomain: "webadventure-7e07a.firebaseapp.com",
+  databaseURL: "https://webadventure-7e07a.firebaseio.com",
+  projectId: "webadventure-7e07a",
+  storageBucket: "gs://webadventure-7e07a.appspot.com",
+};
+firebase.initializeApp(config);
