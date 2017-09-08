@@ -1,11 +1,12 @@
 var express = require('express');
 var firebase = require('firebase');
+var firebaseHelper = require('../firebase_helper');
 var router = express.Router();
 
 
 async function getTestData() {
   var temp;
-  await firebase.database().ref(`/`)
+  await firebase.database().ref(`/users/${firebaseHelper.firebase.auth().currentUser.uid}/temp/`)
   .once('value')
   .then((snapshot) => {
     temp = snapshot.val()
@@ -42,7 +43,17 @@ router.get('/testfirebase', function(req, res, next) {
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express', javascript: ['test.js']});
+  if(firebaseHelper.firebase.auth().currentUser != null){
+    getProfileNode().then(profileNode => {
+      res.render('index', {
+        title: 'Express',
+        dataObject: encodeURI(JSON.stringify(profileNode.testData)),
+        javascript: ['test.js']
+      });
+    })
+  } else {
+    res.redirect('/login');
+  }
 });
 
 module.exports = router;
