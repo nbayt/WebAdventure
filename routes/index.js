@@ -23,15 +23,15 @@ async function getProfileNode() {
 }
 
 /* GET users listing. */
-router.get('/testfirebase', function(req, res, next) {
-  if (true) {
+router.get('/player', function(req, res, next) {
+  if (firebaseHelper.firebase.auth().currentUser != null) {
     // console.log(`profileURL is ${getProfileURL().then(console.log)}`);
     // var profileURL;s
     getProfileNode().then(profileNode => {
-      res.render('index', {
-        title: 'Dashboard - Profile',
+      res.render('player', {
+        title: 'Web Adventure - Player',
         dataObject: encodeURI(JSON.stringify(profileNode.testData)),
-        javascript: ['test.js']
+        javascript: ['player.js','enemy.js','main.js','storage_helper.js']
       });
 
     })
