@@ -29,6 +29,8 @@ router.get('/testfirebase', function(req, res, next) {
     getProfileNode().then(profileNode => {
       res.render('index', {
         title: 'Dashboard - Profile',
+        dataObject: encodeURI(JSON.stringify(profileNode.testData)),
+        javascript: ['test.js']
       });
 
     })

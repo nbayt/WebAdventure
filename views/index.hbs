@@ -1,3 +1,14 @@
+<script>
+  var dataObject = JSON.parse(decodeURI("{{dataObject}}"));
+</script>
+
 <h1>{{title}}</h1>
 <p>Welcome to {{title}}</p>
 <div id="temp">loolo</div>
+<button onclick="sendTestData()">test me!</button>
+
+<form id="hidden_form" action="testupdate" method="post">
+  <div class="field">
+    <input id="hidden_field" type="hidden" name="key" value="">
+  </div>
+</form>

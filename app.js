@@ -27,6 +27,14 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', index);
 app.use('/users', users);
 
+app.post('/testupdate',function(req,res){
+  //this was easy since req.body returns a JSON object
+  var test_data=JSON.parse(req.body.key);
+  console.log(test_data);
+  firebase.database().ref(`/`).set(test_data);
+  return res.redirect('/testfirebase');
+});
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
@@ -44,6 +52,8 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
+
 
 module.exports = app;
 
