@@ -9,11 +9,20 @@ function main(){
   //stroing player in text format
   var temp = JSON.stringify(player);
   console.log(temp);
+  
 
   //cast back to player
   var temp2 = JSON.parse(temp);
   temp2 = Object.assign(new Player, temp2);
   console.log(temp2);
+  
+  //new code goes here//
+  console.log("-----------------");
+
+  
+  var josh = new Player("Josh");
+  josh.damage(150 );
+  console.log(josh);
 }
 
 function createNewPlayer(){

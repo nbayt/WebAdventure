@@ -6,16 +6,20 @@ function Player(name){
   this.mp = 100;
   this.xp=0;
   this.lvl=1;
-
+  this.def=100;
+  this.atk=1;
+  
   var gear = new Object();
   gear.weapon = null;
   gear.armor = null;
   gear.shield = null;
   this.gear = gear;
+
 }
 
 Player.prototype.damage = function(damage){
-  this.hp=Math.max(this.hp-damage,0);
+  var damage_dealt = Math.floor(damage*(1-(this.def/(100+this.def))));
+  this.hp=Math.max(this.hp-damage_dealt,0);
 };
 
 //returns the damage they would deal
