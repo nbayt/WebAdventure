@@ -1,5 +1,5 @@
 <script>
-  var dataObject = JSON.parse(decodeURI("{{dataObject}}"));
+  var dataObject = JSON.parse(decodeURI("{{playerData}}"));
 </script>
 
 <h1>{{title}}</h1>
@@ -16,3 +16,9 @@
     <input id="hidden_field" type="hidden" name="key" value="">
   </div>
 </form>
+
+<div>
+  <h2> Create a Hero </h2>
+  If you don't already have a hero, create one here!
+  <a href="/createplayer">Create Hero</a>
+</div>

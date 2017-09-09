@@ -1,5 +1,5 @@
 var IS_STORAGE = typeof(Storage) !== "undefined";
-console.log(IS_STORAGE+" storage");
+console.log("Storage: "+IS_STORAGE);
 
 //-----Helper_Functions-----//
 function storageSetUp() {

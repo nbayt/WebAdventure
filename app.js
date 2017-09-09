@@ -36,7 +36,7 @@ app.use('/register', register);
 
 //Create a new user
 app.post('/createuser', function(req, res) {
-  var UserName = req.body['name']
+  var UserName = req.body['name'];
   var UserEmail = req.body['email'];
 	var UserPass = req.body['password'];
 	firebaseHelper.addUser(UserName, UserEmail, UserPass,
@@ -50,6 +50,14 @@ app.post('/createuser', function(req, res) {
 	});
 });
 
+app.post('/createplayer', function(req, res) {
+  var player_data = req.body['player_data'];
+  player_data = JSON.parse(player_data);
+  console.log(player_data);
+	firebase.database().ref(`/users/${firebaseHelper.firebase.auth().currentUser.uid}/player_info/player`).set(player_data);
+  return res.redirect('/');
+});
+
 //Login the user
 app.post('/userlogin', function(req, res) {
   var UserEmail = req.body['email'];
@@ -57,6 +65,7 @@ app.post('/userlogin', function(req, res) {
 	firebaseHelper.authenticate(UserEmail, UserPass,
 		function(error, uid) {
 			if (error) {
+        console.log(error);
 				return res.status(500).send(error);
 			} else {
         return res.redirect('/');

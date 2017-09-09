@@ -4,9 +4,9 @@ var firebaseHelper = require('../firebase_helper');
 var router = express.Router();
 
 
-async function getTestData() {
+async function getPlayerData() {
   var temp;
-  await firebase.database().ref(`/users/${firebaseHelper.firebase.auth().currentUser.uid}/temp/`)
+  await firebase.database().ref(`/users/${firebaseHelper.firebase.auth().currentUser.uid}/player_info/player`)
   .once('value')
   .then((snapshot) => {
     temp = snapshot.val()
@@ -16,9 +16,9 @@ async function getTestData() {
 
 async function getProfileNode() {
   var dataObject = {}
-  let [testData] = await Promise.all([getTestData()]);
-  dataObject.testData = testData;
-  console.log(dataObject.testData);
+  let [playerData] = await Promise.all([getPlayerData()]);
+  dataObject.playerData = playerData;
+  console.log(dataObject.playerData);
   return dataObject;
 }
 
@@ -30,7 +30,7 @@ router.get('/player', function(req, res, next) {
     getProfileNode().then(profileNode => {
       res.render('player', {
         title: 'Web Adventure - Player',
-        dataObject: encodeURI(JSON.stringify(profileNode.testData)),
+        playerData: encodeURI(JSON.stringify(profileNode.playerData)),
         javascript: ['player.js','enemy.js','main.js','storage_helper.js']
       });
 
@@ -41,12 +41,26 @@ router.get('/player', function(req, res, next) {
 
 });
 
+router.get('/createplayer', function(req, res, next) {
+  if(firebaseHelper.firebase.auth().currentUser != null){
+    getProfileNode().then(profileNode => {
+      res.render('player/create_player', {
+        title: 'Create Hero',
+        dataObject: encodeURI(JSON.stringify(profileNode.testData)),
+        javascript: ['player.js','create_player.js']
+      });
+    })
+  } else {
+    res.redirect('/login');
+  }
+});
+
 /* GET home page. */
 router.get('/', function(req, res, next) {
   if(firebaseHelper.firebase.auth().currentUser != null){
     getProfileNode().then(profileNode => {
       res.render('index', {
-        title: 'Express',
+        title: 'Index',
         dataObject: encodeURI(JSON.stringify(profileNode.testData)),
         javascript: ['test.js']
       });

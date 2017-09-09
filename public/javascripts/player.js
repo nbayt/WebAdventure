@@ -1,3 +1,19 @@
+/*
+  ----------------------------
+  -----------TO DO------------
+  ----------------------------
+
+    * Add class default stats
+      * Mage
+      * Warrior
+      * Paladin
+      * Thief
+    * Add more stat types
+    * Create gear
+    * Add level curve with stat growth
+
+*/
+
 function Player(name){
   this.name = name;
   this.max_hp = 100;
@@ -8,15 +24,15 @@ function Player(name){
   this.lvl=1;
   this.def=100;
   this.atk=1;
-  
-  var gear = new Object();
-  gear.weapon = null;
-  gear.armor = null;
-  gear.shield = null;
-  this.gear = gear;
 
+  //var gear = new Object();
+  //gear.weapon.name = "empty";
+  //gear.armor.name = "empty";
+  //gear.shield.name = "empty";
+  //this.gear = gear;
 }
 
+//deals damage to the player, reduced by armor
 Player.prototype.damage = function(damage){
   var damage_dealt = Math.floor(damage*(1-(this.def/(100+this.def))));
   this.hp=Math.max(this.hp-damage_dealt,0);
@@ -24,12 +40,17 @@ Player.prototype.damage = function(damage){
 
 //returns the damage they would deal
 Player.prototype.getDamage = function(){
-  return 5+this.lvl*2;
+  return this.atk;
 };
 
 Player.prototype.heal = function(heal){
   this.hp=Math.min(this.max_hp,this.hp+heal);
 };
+
+Player.prototype.healPercent = function(percent_heal){
+  var heal = this.max_hp*percent_heal;
+  this.hp=Math.min(this.max_hp,this.hp+heal);
+}
 
 Player.prototype.restore = function(){
   this.hp=this.max_hp;

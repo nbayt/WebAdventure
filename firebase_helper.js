@@ -21,12 +21,10 @@ function writeUserData(userID, name, email) {
     fullname: name,
     email: email,
   });
-  firebase.database().ref('users/' + userID + '/player_info').set({
-    "name": name
-  });
-  firebase.database().ref(`users/${userID}/temp`).set({
-    "key_1": "val_1",
-    "key_2": "val_2"
+  firebase.database().ref(`users/${userID}/player_info`).set({
+    "player": {
+      "name" : "null"
+    }
   });
 }
 
