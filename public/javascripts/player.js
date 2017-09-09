@@ -22,9 +22,9 @@ function Player(name){
   this.mp = 100;
   this.xp=0;
   this.lvl=1;
-  this.def=100;
+  this.def=1;
   this.atk=1;
-
+ 
   //var gear = new Object();
   //gear.weapon.name = "empty";
   //gear.armor.name = "empty";
@@ -34,7 +34,7 @@ function Player(name){
 
 //deals damage to the player, reduced by armor
 Player.prototype.damage = function(damage){
-  var damage_dealt = Math.floor(damage*(1-(this.def/(100+this.def))));
+  var damage_dealt = Math.floor((damage+this.atk)*(1-(this.def/(100+this.def))));
   this.hp=Math.max(this.hp-damage_dealt,0);
 };
 

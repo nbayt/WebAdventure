@@ -23,6 +23,7 @@ function main(){
   var josh = new Player("Josh");
   josh.damage(150);
   console.log(josh);
+  
 }
 
 function createNewPlayer(){
