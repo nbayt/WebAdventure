@@ -4,6 +4,6 @@ function createPlayer(){
   console.log(name);
   var player = new Player(name);
   console.log(player);
-  document.getElementById("hidden_field").setAttribute('value',JSON.stringify(player));
+  document.getElementById("hidden_field").setAttribute('value',encodeURI(JSON.stringify(player)));
   form.submit();
 }

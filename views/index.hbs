@@ -1,21 +1,18 @@
 <script>
-  var dataObject = JSON.parse(decodeURI("{{playerData}}"));
+  var player_data = JSON.parse(decodeURI("{{playerData}}"));
 </script>
 
 <h1>{{title}}</h1>
 <p>Welcome to {{title}}</p>
-<div id="temp">loolo</div>
-<button onclick="sendTestData()">test me!</button>
 
 <form action="userlogout" method="post">
   <input type="submit" value="Logout"></input>
 </form>
 
-<form id="hidden_form" action="testupdate" method="post">
-  <div class="field">
-    <input id="hidden_field" type="hidden" name="key" value="">
-  </div>
-</form>
+<div>
+  <h2> Find a battle! </h2>
+  Find a monster for your hero to fight!
+</div>
 
 <div>
   <h2> Create a Hero </h2>

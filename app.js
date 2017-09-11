@@ -52,7 +52,7 @@ app.post('/createuser', function(req, res) {
 
 app.post('/createplayer', function(req, res) {
   var player_data = req.body['player_data'];
-  player_data = JSON.parse(player_data);
+  player_data = JSON.parse(decodeURI(player_data));
   console.log(player_data);
 	firebase.database().ref(`/users/${firebaseHelper.firebase.auth().currentUser.uid}/player_info/player`).set(player_data);
   return res.redirect('/');

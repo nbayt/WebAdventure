@@ -24,7 +24,9 @@ function Player(name){
   this.lvl=1;
   this.def=1;
   this.atk=1;
- 
+
+  //-----TODO-----//
+  // Add deafult gear
   //var gear = new Object();
   //gear.weapon.name = "empty";
   //gear.armor.name = "empty";
