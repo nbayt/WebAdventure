@@ -28,6 +28,11 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+// might be useful
+//app.use(['/abcd', '/xyza', /\/lmn|\/pqr/], function (req, res, next) {
+//  next();
+//});
+
 app.use('/', index);
 app.use('/users', users);
 

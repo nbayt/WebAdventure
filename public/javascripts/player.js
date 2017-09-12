@@ -22,8 +22,11 @@ function Player(name){
   this.mp = 100;
   this.xp=0;
   this.lvl=1;
-  this.def=1;
-  this.atk=1;
+  this.def=10;
+  this.atk=10;
+
+  //-----TODO-----//
+  //class types and different generation for each
 
   //-----TODO-----//
   // Add deafult gear
@@ -38,6 +41,7 @@ function Player(name){
 Player.prototype.damage = function(damage){
   var damage_dealt = Math.floor(damage*(1-(this.def/(100+this.def))));
   this.hp=Math.max(this.hp-damage_dealt,0);
+  return damage_dealt;
 };
 
 //returns the damage they would deal

@@ -18,6 +18,7 @@ async function getProfileNode() {
   var dataObject = {}
   let [playerData] = await Promise.all([getPlayerData()]);
   dataObject.playerData = playerData;
+  console.log("got data: ");
   console.log(dataObject.playerData);
   return dataObject;
 }
@@ -46,10 +47,21 @@ router.get('/createplayer', function(req, res, next) {
     getProfileNode().then(profileNode => {
       res.render('player/create_player', {
         title: 'Create Hero',
-        dataObject: encodeURI(JSON.stringify(profileNode.testData)),
+        dataObject: encodeURI(JSON.stringify(profileNode.playerData)),
         javascript: ['player.js','create_player.js']
       });
     })
+  } else {
+    res.redirect('/login');
+  }
+});
+
+router.get('/battle',function(req, res,next){
+  if(firebaseHelper.firebase.auth().currentUser != null){
+    res.render('battle.hbs',{
+      title: 'Battle',
+      javascript: ['player.js','enemy.js','battle.js','storage_helper.js']
+    });
   } else {
     res.redirect('/login');
   }
@@ -61,8 +73,8 @@ router.get('/', function(req, res, next) {
     getProfileNode().then(profileNode => {
       res.render('index', {
         title: 'Index',
-        dataObject: encodeURI(JSON.stringify(profileNode.testData)),
-        javascript: ['test.js']
+        playerData: encodeURI(JSON.stringify(profileNode.playerData)),
+        javascript: ['index.js','player.js','storage_helper.js']
       });
     })
   } else {
