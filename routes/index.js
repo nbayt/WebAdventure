@@ -60,7 +60,7 @@ router.get('/battle',function(req, res,next){
   if(firebaseHelper.firebase.auth().currentUser != null){
     res.render('battle.hbs',{
       title: 'Battle',
-      javascript: ['player.js','enemy.js','battle.js','storage_helper.js']
+      javascript: ['player.js','enemy.js','battle.js','gear.js','storage_helper.js']
     });
   } else {
     res.redirect('/login');

@@ -3,7 +3,7 @@ var router = express.Router();
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
-  res.render('auth/login', { title: 'Web Adventure - Login'});
+  res.render('auth/login', { title: 'Web Adventure - Login', javascript: ['login.js', 'storage_helper.js']});
 });
 
 

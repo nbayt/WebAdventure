@@ -30,6 +30,9 @@ function playerAttack(){
 
   document.getElementById("battle_msg").innerHTML = ("You dealt: "+damage_dealt+"<br>"+"Enemy dealt: "+damage_taken);
   writeBattleInfo();
+  if(battle_enemy.hp<=0){
+    console.log('You win!');
+  }
 }
 
 //setup the battle scene
